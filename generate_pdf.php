@@ -35,7 +35,7 @@ class Compose_PDF extends \ElementorPro\Modules\Forms\Classes\Action_Base {
 
     public function register_settings_section( $widget ) {
         $widget->start_controls_section(
-            $this->get_control_id( 'section_email' ),
+            $this->get_control_id( 'sd_pdf_section_email' ),
             [
                 'label' => $this->get_label(),
                 'tab' => Controls_Manager::TAB_CONTENT,
@@ -48,7 +48,7 @@ class Compose_PDF extends \ElementorPro\Modules\Forms\Classes\Action_Base {
         $this->maybe_add_site_mailer_notice( $widget );
 
         $widget->add_control(
-            $this->get_control_id( 'email_to' ),
+            $this->get_control_id( 'sd_pdf_email_to' ),
             [
                 'label' => esc_html__( 'To', 'elementor-pro' ),
                 'type' => Controls_Manager::TEXT,
@@ -70,7 +70,7 @@ class Compose_PDF extends \ElementorPro\Modules\Forms\Classes\Action_Base {
         $default_message = sprintf( __( 'New message from "%s"', 'elementor-pro' ), get_option( 'blogname' ) );
 
         $widget->add_control(
-            $this->get_control_id( 'email_subject' ),
+            $this->get_control_id( 'sd_pdf_email_subject' ),
             [
                 'label' => esc_html__( 'Subject', 'elementor-pro' ),
                 'type' => Controls_Manager::TEXT,
@@ -88,7 +88,7 @@ class Compose_PDF extends \ElementorPro\Modules\Forms\Classes\Action_Base {
         );
 
         $widget->add_control(
-            $this->get_control_id( 'email_content' ),
+            $this->get_control_id( 'sd_pdf_email_content' ),
             [
                 'label' => esc_html__( 'Message', 'elementor-pro' ),
                 'type' => Controls_Manager::TEXTAREA,
@@ -112,7 +112,7 @@ class Compose_PDF extends \ElementorPro\Modules\Forms\Classes\Action_Base {
         $site_domain = Utils::get_site_domain();
 
         $widget->add_control(
-            $this->get_control_id( 'email_from' ),
+            $this->get_control_id( 'sd_pdf_email_from' ),
             [
                 'label' => esc_html__( 'From Email', 'elementor-pro' ),
                 'type' => Controls_Manager::TEXT,
@@ -128,7 +128,7 @@ class Compose_PDF extends \ElementorPro\Modules\Forms\Classes\Action_Base {
         );
 
         $widget->add_control(
-            $this->get_control_id( 'email_from_name' ),
+            $this->get_control_id( 'sd_pdf_email_from_name' ),
             [
                 'label' => esc_html__( 'From Name', 'elementor-pro' ),
                 'type' => Controls_Manager::TEXT,
@@ -144,7 +144,7 @@ class Compose_PDF extends \ElementorPro\Modules\Forms\Classes\Action_Base {
         );
 
         $widget->add_control(
-            $this->get_control_id( 'email_reply_to' ),
+            $this->get_control_id( 'sd_pdf_email_reply_to' ),
             [
                 'label' => esc_html__( 'Reply-To', 'elementor-pro' ),
                 'type' => Controls_Manager::SELECT,
@@ -156,7 +156,7 @@ class Compose_PDF extends \ElementorPro\Modules\Forms\Classes\Action_Base {
         );
 
         $widget->add_control(
-            $this->get_control_id( 'email_to_cc' ),
+            $this->get_control_id( 'sd_pdf_email_to_cc' ),
             [
                 'label' => esc_html__( 'Cc', 'elementor-pro' ),
                 'type' => Controls_Manager::TEXT,
@@ -173,7 +173,7 @@ class Compose_PDF extends \ElementorPro\Modules\Forms\Classes\Action_Base {
         );
 
         $widget->add_control(
-            $this->get_control_id( 'email_to_bcc' ),
+            $this->get_control_id( 'sd_pdf_email_to_bcc' ),
             [
                 'label' => esc_html__( 'Bcc', 'elementor-pro' ),
                 'type' => Controls_Manager::TEXT,
@@ -190,7 +190,7 @@ class Compose_PDF extends \ElementorPro\Modules\Forms\Classes\Action_Base {
         );
 
         $widget->add_control(
-            $this->get_control_id( 'form_metadata' ),
+            $this->get_control_id( 'sd_pdf_form_metadata' ),
             [
                 'label' => esc_html__( 'Meta Data', 'elementor-pro' ),
                 'type' => Controls_Manager::SELECT2,
@@ -218,7 +218,7 @@ class Compose_PDF extends \ElementorPro\Modules\Forms\Classes\Action_Base {
         );
 
         $widget->add_control(
-            $this->get_control_id( 'email_content_type' ),
+            $this->get_control_id( 'sd_pdf_email_content_type' ),
             [
                 'label' => esc_html__( 'Send As', 'elementor-pro' ),
                 'type' => Controls_Manager::SELECT,
@@ -302,7 +302,7 @@ class Compose_PDF extends \ElementorPro\Modules\Forms\Classes\Action_Base {
         }
 
         $widget->add_control(
-            $this->get_control_id( 'site_mailer_promo' ),
+            $this->get_control_id( 'sd_pdf_site_mailer_promo' ),
             [
                 'type' => Controls_Manager::RAW_HTML,
                 'raw' => Hints::get_notice_template( [

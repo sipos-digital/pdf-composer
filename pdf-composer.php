@@ -5,7 +5,7 @@
  * Version: 1.0.1
  * Text-domain: pdf-composer
  * Author: Július Sipos @ sipos.digital
- * Author-URL: www.sipos.digital
+ * Author URI: https://sipos.digital
  */
 
 if (!defined('ABSPATH')) {
