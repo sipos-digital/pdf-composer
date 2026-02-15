@@ -2,7 +2,7 @@
 /**
  * Plugin Name: PDF Composer & Email sender for Elementor Pro Forms
  * Description: Composes a PDF from predefined pages based on Elementor Form submissions.
- * Version: 1.0.1
+ * Version: 1.0.2
  * Text-domain: pdf-composer
  * Author: Július Sipos @ sipos.digital
  * Author URI: https://sipos.digital

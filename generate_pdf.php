@@ -25,6 +25,8 @@ class Compose_PDF extends \ElementorPro\Modules\Forms\Classes\Action_Base {
 
     private $pdf;
 
+    private $score;
+
     public function get_name(): string {
         return 'compose_pdf';
     }
@@ -332,6 +334,9 @@ class Compose_PDF extends \ElementorPro\Modules\Forms\Classes\Action_Base {
      */
     public function run($record, $ajax_handler ): void {
 
+        $score = $record->get_field(['id' => 'lead_score']);
+        $this->score = $score['lead_score']['value'];
+
         // Define File Name
         $file_name = wp_date('Y_m_d_His') . '_zhrnutie.pdf';
 
@@ -536,6 +541,7 @@ class Compose_PDF extends \ElementorPro\Modules\Forms\Classes\Action_Base {
      */
     private function prepare_files(array $data): array {
         $data = array_values($data);
+        $score = $this->score;
 
         $dynamic_files = [];
         $i = 0;
@@ -550,6 +556,15 @@ class Compose_PDF extends \ElementorPro\Modules\Forms\Classes\Action_Base {
             $i++;
         }
 
+        if ($score >= 10 && $score <= 12) {
+            $dynamic_files[$i] = PDFC_PATH . 'assets/pdf/dynamic/10_12.pdf';
+        } elseif ($score >= 13 && $score <= 15) {
+            $dynamic_files[$i] = PDFC_PATH . 'assets/pdf/dynamic/13_15.pdf';
+        } elseif ($score >= 16 && $score <= 17) {
+            $dynamic_files[$i] = PDFC_PATH . 'assets/pdf/dynamic/16_17.pdf';
+        } elseif ($score === 18) {
+            $dynamic_files[$i] = PDFC_PATH . 'assets/pdf/dynamic/18.pdf';
+        }
         return $dynamic_files;
 
     }
