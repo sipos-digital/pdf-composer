@@ -1,0 +1,7 @@
+{
+  "require": {
+    "setasign/fpdf": "^1.8",
+    "setasign/fpdi": "^2.6",
+    "yahnis-elsts/plugin-update-checker": "^5.0"
+  }
+}
