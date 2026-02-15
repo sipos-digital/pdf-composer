@@ -2,7 +2,7 @@
 /**
  * Plugin Name: PDF Composer & Email sender for Elementor Pro Forms
  * Description: Composes a PDF from predefined pages based on Elementor Form submissions.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Text-domain: pdf-composer
  * Author: Július Sipos @ sipos.digital
  * Author-URL: www.sipos.digital
@@ -23,7 +23,7 @@ define('PDFC_URL', plugin_dir_url(__FILE__));
 use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 
 $myUpdateChecker = PucFactory::buildUpdateChecker(
-    'https://github.com/jsdizajner/pdf-composer',
+    'https://github.com/sipos-digital/pdf-composer',
     __FILE__,
     'pdf-composer'
 );
