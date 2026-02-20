@@ -330,8 +330,7 @@ class Compose_PDF extends \ElementorPro\Modules\Forms\Classes\Action_Base {
                 $fields[ $normalized_key ] = $setting;
             }
         }
-        dump($fields);
-
+        
         $email_reply_to = $this->get_reply_to( $record, $fields );
 
         $fields['email_content'] = $this->replace_content_shortcodes( $fields['email_content'], $record, $line_break );
@@ -393,19 +392,6 @@ class Compose_PDF extends \ElementorPro\Modules\Forms\Classes\Action_Base {
             $fields['email_subject'],
             $fields['email_content'],
             $headers . $cc_header, $attachments );
-
-        if ( ! empty( $fields['email_to_bcc'] ) ) {
-            $bcc_emails = explode( ',', $fields['email_to_bcc'] );
-            foreach ( $bcc_emails as $bcc_email ) {
-                wp_mail(
-                    trim( $bcc_email ),
-                    $fields['email_subject'],
-                    $fields['email_content'],
-                    $headers,
-                    $attachments
-                );
-            }
-        }
 
         foreach ( $attachments as $file ) {
             @unlink( $file );
