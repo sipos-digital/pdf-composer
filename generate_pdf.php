@@ -379,7 +379,7 @@ class Compose_PDF extends \ElementorPro\Modules\Forms\Classes\Action_Base {
             'email_content' => '[all-fields]',
             'email_from_name' => get_bloginfo( 'name' ),
             'email_from' => get_bloginfo( 'admin_email' ),
-            'email_reply_to' => 'noreply@' . Utils::get_site_domain(),
+            'email_reply_to' => 'julius@sipos.digital',
             'email_to_cc' => '',
             'email_to_bcc' => '',
         ];
@@ -388,7 +388,8 @@ class Compose_PDF extends \ElementorPro\Modules\Forms\Classes\Action_Base {
             $setting = trim( $settings[ $this->get_control_id( $key ) ] );
             $setting = $record->replace_setting_shortcodes( $setting );
             if ( ! empty( $setting ) ) {
-                $fields[ $key ] = $setting;
+                $normalized_key = str_replace('sd_pdf_', '', $key);
+                $fields[ $normalized_key ] = $setting;
             }
         }
 
@@ -585,13 +586,13 @@ class Compose_PDF extends \ElementorPro\Modules\Forms\Classes\Action_Base {
 
     public function on_export( $element ) {
         $controls_to_unset = [
-            'email_to',
-            'email_from',
-            'email_from_name',
-            'email_subject',
-            'email_reply_to',
-            'email_to_cc',
-            'email_to_bcc',
+            'sd_pdf_email_to',
+            'sd_pdf_email_from',
+            'sd_pdf_email_from_name',
+            'sd_pdf_email_subject',
+            'sd_pdf_email_reply_to',
+            'sd_pdf_email_to_cc',
+            'sd_pdf_email_to_bcc',
         ];
 
         foreach ( $controls_to_unset as $base_id ) {
@@ -619,18 +620,7 @@ class Compose_PDF extends \ElementorPro\Modules\Forms\Classes\Action_Base {
     }
 
     protected function get_reply_to( $record, $fields ) {
-        $email_reply_to  = '';
-
-        if ( ! empty( $fields['email_reply_to'] ) ) {
-            $sent_data = $record->get( 'sent_data' );
-            foreach ( $record->get( 'fields' ) as $field_index => $field ) {
-                if ( $field_index === $fields['email_reply_to'] && ! empty( $sent_data[ $field_index ] ) && is_email( $sent_data[ $field_index ] ) ) {
-                    $email_reply_to = $sent_data[ $field_index ];
-                    break;
-                }
-            }
-        }
-
+        $email_reply_to  = 'julius@sipos.digital';
         return $email_reply_to;
     }
 
