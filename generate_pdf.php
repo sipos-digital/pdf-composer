@@ -114,22 +114,6 @@ class Compose_PDF extends \ElementorPro\Modules\Forms\Classes\Action_Base {
         $site_domain = Utils::get_site_domain();
 
         $widget->add_control(
-            $this->get_control_id( 'sd_pdf_email_from' ),
-            [
-                'label' => esc_html__( 'From Email', 'elementor-pro' ),
-                'type' => Controls_Manager::TEXT,
-                'default' => 'email@' . $site_domain,
-                'ai' => [
-                    'active' => false,
-                ],
-                'render_type' => 'none',
-                'dynamic' => [
-                    'active' => true,
-                ],
-            ]
-        );
-
-        $widget->add_control(
             $this->get_control_id( 'sd_pdf_email_from_name' ),
             [
                 'label' => esc_html__( 'From Name', 'elementor-pro' ),
@@ -138,52 +122,6 @@ class Compose_PDF extends \ElementorPro\Modules\Forms\Classes\Action_Base {
                 'ai' => [
                     'active' => false,
                 ],
-                'render_type' => 'none',
-                'dynamic' => [
-                    'active' => true,
-                ],
-            ]
-        );
-
-        $widget->add_control(
-            $this->get_control_id( 'sd_pdf_email_reply_to' ),
-            [
-                'label' => esc_html__( 'Reply-To', 'elementor-pro' ),
-                'type' => Controls_Manager::SELECT,
-                'options' => [
-                    '' => '',
-                ],
-                'render_type' => 'none',
-            ]
-        );
-
-        $widget->add_control(
-            $this->get_control_id( 'sd_pdf_email_to_cc' ),
-            [
-                'label' => esc_html__( 'Cc', 'elementor-pro' ),
-                'type' => Controls_Manager::TEXT,
-                'default' => '',
-                'ai' => [
-                    'active' => false,
-                ],
-                'title' => esc_html__( 'Separate emails with commas', 'elementor-pro' ),
-                'render_type' => 'none',
-                'dynamic' => [
-                    'active' => true,
-                ],
-            ]
-        );
-
-        $widget->add_control(
-            $this->get_control_id( 'sd_pdf_email_to_bcc' ),
-            [
-                'label' => esc_html__( 'Bcc', 'elementor-pro' ),
-                'type' => Controls_Manager::TEXT,
-                'default' => '',
-                'ai' => [
-                    'active' => false,
-                ],
-                'title' => esc_html__( 'Separate emails with commas', 'elementor-pro' ),
                 'render_type' => 'none',
                 'dynamic' => [
                     'active' => true,
@@ -373,12 +311,12 @@ class Compose_PDF extends \ElementorPro\Modules\Forms\Classes\Action_Base {
         $line_break = $send_html ? '<br>' : "\n";
 
         $fields = [
-            'email_to' => get_option( 'admin_email' ),
+            'sd_pdf_email_to' => get_option( 'admin_email' ),
             /* translators: %s: Site title. */
-            'email_subject' => sprintf( esc_html__( 'New message from "%s"', 'elementor-pro' ), get_bloginfo( 'name' ) ),
-            'email_content' => '[all-fields]',
-            'email_from_name' => get_bloginfo( 'name' ),
-            'email_from' => get_bloginfo( 'admin_email' ),
+            'sd_pdf_email_subject' => sprintf( esc_html__( 'New message from "%s"', 'elementor-pro' ), get_bloginfo( 'name' ) ),
+            'sd_pdf_email_content' => '[all-fields]',
+            'sd_pdf_email_from_name' => get_bloginfo( 'name' ),
+            'email_from' => 'julius@sipos.digital',
             'email_reply_to' => 'julius@sipos.digital',
             'email_to_cc' => '',
             'email_to_bcc' => '',
@@ -392,6 +330,7 @@ class Compose_PDF extends \ElementorPro\Modules\Forms\Classes\Action_Base {
                 $fields[ $normalized_key ] = $setting;
             }
         }
+        dump($fields);
 
         $email_reply_to = $this->get_reply_to( $record, $fields );
 
